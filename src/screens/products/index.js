@@ -1,14 +1,23 @@
-import { View, Text, TouchableOpacity } from 'react-native';
-import ItemButton from '../../components/itemButton';
-import { styles } from './styles';
-const Products = ({navigation}) => {
+import { FlatList } from 'react-native';
+import { ProductItem } from '../../components';
+
+import { PRODUCTS } from '../../constants/data';
+import { styles } from '../categories/styles';
+
+const Products = ({navigation, route}) => {
+
+  const {categoryId, color } = route.params;
+  const filteredProducts = PRODUCTS.filter(product => product.categoryId === categoryId)
+  const onSelected = (item) => navigation.navigate('Detail', {title: item.name, productId: item.id})
+  const renderItem = ({item}) => <ProductItem item = {item} onSelected={onSelected} color={color}/>
   return (
-    <View>
-      <Text style={styles.title}>Elige un producto</Text>
-      <TouchableOpacity onPress={()=> navigation.navigate('Detail')}>
-        <ItemButton name={"Ir al detalle del producto"} />
-      </TouchableOpacity>
-    </View>
+    <FlatList
+    data={filteredProducts}
+    renderItem={renderItem}
+    keyExtractor={(item) => item.id.toString()}
+    style={styles.container}
+    />
+    
   );
 };
 

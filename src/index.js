@@ -1,5 +1,5 @@
 import { useFonts } from 'expo-font';
-import { StyleSheet, View, ActivityIndicator } from 'react-native';
+import { StyleSheet, View, ActivityIndicator, Image } from 'react-native';
 import AppNavigator from './navigation';
 
 export default function App() {
@@ -14,9 +14,8 @@ export default function App() {
       </View>
     );
   }
-
   return (
-        <AppNavigator/>
+    <AppNavigator/>
   );
 }
 

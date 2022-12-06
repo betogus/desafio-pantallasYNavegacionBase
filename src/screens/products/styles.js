@@ -7,5 +7,8 @@ export const styles = StyleSheet.create({
         color: colors.title,
         textAlign: "center"
  
+    },
+    container: {
+        flex: 1
     }
 })

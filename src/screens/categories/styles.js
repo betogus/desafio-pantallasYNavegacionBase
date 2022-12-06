@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native"
+import { StyleSheet, StatusBar, Platform } from "react-native"
 import colors from "../../constants/colors"
 
 export const styles = StyleSheet.create({
@@ -6,5 +6,9 @@ export const styles = StyleSheet.create({
         fontFamily: 'Poppins-Regular',
         color: colors.title,
         textAlign: "center"
+    },
+    container: {
+        flex: 1,
+        marginTop: Platform.OS=== "android" ? StatusBar.currentHeight : 0
     }
 })
