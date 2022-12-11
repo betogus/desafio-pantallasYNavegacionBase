@@ -22,7 +22,6 @@ export const styles = StyleSheet.create({
     elevation: 2,
     margin: 10,
   },
-  headerContainer: {},
   header: {
     fontSize: 16,
     fontFamily: 'Poppins-Regular',

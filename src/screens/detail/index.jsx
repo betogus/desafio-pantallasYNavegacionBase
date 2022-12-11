@@ -1,12 +1,11 @@
 import { View, Text, TouchableOpacity } from 'react-native';
+import { useSelector } from 'react-redux';
 import ItemButton from '../../components/itemButton';
-import { PRODUCTS } from '../../constants/data';
 import { styles } from './styles';
 
-const Detail = ({navigation, route}) => {
-  const {productId} = route.params
-  const filteredProduct = PRODUCTS.find(product => product.id===productId)
-  const {name, precio100gr, precioKg} = filteredProduct || {}
+const Detail = ({navigation}) => {
+  const product = useSelector(state => state.products.selected)
+  const {name, precio100gr, precioKg} = product || {}
 
   return (
     <View style={styles.container}>

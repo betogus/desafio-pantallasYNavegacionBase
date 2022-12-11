@@ -10,6 +10,7 @@ const ShopNavigator = () => {
         <Stack.Navigator 
         initialRouteName="Categories"
         screenOptions={{
+            
             headerStyle: {
                 backgroundColor:  colors.backgroundBase,
 

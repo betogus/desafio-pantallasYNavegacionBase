@@ -11,6 +11,7 @@ const Tabs = () => {
         <BottomTab.Navigator
         initialRouteName="ShopTab"
         screenOptions={{
+            
             headerShown: false,
             tabBarLabelStyle: {
                 fontFamily: 'Poppins-Regular',
@@ -31,7 +32,7 @@ const Tabs = () => {
                 title: 'Shop',
                 tabBarIcon: ({focused}) => (
                     <Ionicons
-                    name={focused ? 'home' : 'home-outline'}
+                    name={focused ? 'basket' : 'basket-outline'}
                     size={22}
                     color={colors.title}
                     />
