@@ -1,5 +1,5 @@
-import {  StyleSheet } from "react-native"
-import colors from "../../constants/colors"
+import { StyleSheet } from 'react-native';
+import colors from '../../constants/colors';
 
 export const styles = StyleSheet.create({
   container: {
@@ -13,27 +13,27 @@ export const styles = StyleSheet.create({
     flex: 1,
     minHeight: 50,
     borderRadius: 10,
-    shadowColor: "#000",
+    shadowColor: '#000',
     shadowOffset: {
       width: 0,
-      height: 1
+      height: 1,
     },
-    shadowOpacity: 0.20,
+    shadowOpacity: 0.2,
     shadowRadius: 1.41,
     elevation: 2,
-    justifyContent: "center",
-    alignItems: "center",
-    padding: 10
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 10,
   },
   title: {
     fontSize: 18,
-    fontFamily: "Poppins-Regular",
+    fontFamily: 'Poppins-Regular',
   },
   detailContainer: {
-    flex: 1
+    flex: 1,
   },
   price: {
     fontSize: 16,
-    fontFamily: 'Poppins-Regular'
+    fontFamily: 'Poppins-Regular',
   },
-})
+});

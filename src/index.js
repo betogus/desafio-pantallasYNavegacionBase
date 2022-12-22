@@ -18,10 +18,10 @@ export default function App() {
   }
   return (
     <Provider store={store}>
-          <AppNavigator/>
+      <AppNavigator />
     </Provider>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {

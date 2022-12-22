@@ -1,9 +1,8 @@
-import { categoryTypes } from "../types"
+import { categoryTypes } from '../types';
 
 const { SELECT_CATEGORY } = categoryTypes;
 
 export const selectCategory = (id) => ({
-    type: SELECT_CATEGORY, 
-    categoryId: id, 
-
-})
+  type: SELECT_CATEGORY,
+  categoryId: id,
+});

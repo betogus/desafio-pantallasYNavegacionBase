@@ -1,4 +1,4 @@
-import { registerRootComponent } from 'expo'
-import App from './src/index.js'
+import { registerRootComponent } from 'expo';
+import App from './src/index.js';
 
-registerRootComponent(App)
+registerRootComponent(App);

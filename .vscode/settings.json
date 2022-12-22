@@ -1,0 +1,10 @@
+{
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "react-native.android.logCatArguments": ["*:S", "ReactNative:V", "ReactNativeJS:V"],
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": false,
+  "prettier.useTabs": true,
+  "eslint.codeActionsOnSave.rules": null
+}

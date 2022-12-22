@@ -1,7 +1,6 @@
 import { StyleSheet } from 'react-native';
 import colors from '../../constants/colors';
 
-
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -21,16 +20,20 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 20,
     borderRadius: 10,
   },
- 
-  totalContainer: {
-    flex: 0.4,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
 
-  },
   textTotal: {
     fontSize: 16,
     fontFamily: 'Poppins-Regular',
+  },
+  buttonDisabled: {
+    backgroundColor: colors.primaryDark,
+    borderTopWidth: 1,
+    borderTopColor: colors.primaryDark,
+    borderBottomColor: colors.primaryDark,
+    paddingVertical: 10,
+    marginBottom: 10,
+    marginHorizontal: 10,
+    paddingHorizontal: 20,
+    borderRadius: 10,
   },
 });

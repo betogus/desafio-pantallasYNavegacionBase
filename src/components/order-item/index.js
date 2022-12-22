@@ -6,7 +6,7 @@ import colors from '../../constants/colors';
 import { formatDate } from '../../utils';
 import { styles } from './styles';
 
-const OrderItem = ({ item, onDelete }) => {
+function OrderItem({ item, onDelete }) {
   return (
     <View style={styles.container}>
       <View>
@@ -22,6 +22,6 @@ const OrderItem = ({ item, onDelete }) => {
       </View>
     </View>
   );
-};
+}
 
 export default OrderItem;
