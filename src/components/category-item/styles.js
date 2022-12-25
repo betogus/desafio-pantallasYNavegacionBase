@@ -25,7 +25,7 @@ export const styles = StyleSheet.create({
     width: 320,
     height: 160,
 
-    borderRadius: '2rem',
+    borderRadius: 10,
     resizeMode: 'cover',
   },
 });

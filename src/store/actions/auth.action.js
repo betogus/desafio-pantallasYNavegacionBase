@@ -24,7 +24,8 @@ export const signUp = (email, password) => {
             dispatch({
                 type: SIGN_UP,
                 token: data.idToken,
-                userId: data.localId
+                userId: data.localId,
+                email: email
             })
         } catch (error) {
             throw error;
@@ -48,6 +49,7 @@ export const signIn = (email, password) => {
                 type: SIGN_IN,
                 token: data.idToken,
                 userId: data.localId,
+                email: email
             });
         } catch (error) {
             throw error;

@@ -1,5 +1,5 @@
 import { TextInput } from "react-native"
-import { View, Text } from "react-native-web"
+import { View, Text } from "react-native"
 import Label from "../label"
 import { styles } from "./styles"
 

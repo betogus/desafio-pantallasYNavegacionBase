@@ -5,3 +5,4 @@ export { default as Orders } from './orders';
 export { default as Cart } from './cart';
 export {default as Auth} from './auth';
 export {default as User } from './user';
+export { default as Maps } from './maps'
