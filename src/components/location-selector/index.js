@@ -6,12 +6,14 @@ import colors from "../../constants/colors";
 import MapPreview from "../map-preview";
 import { styles } from "./styles";
 
-const LocationSelector = ({ onLocation }) => {
+const LocationSelector = ({ onLocation, location }) => {
 
   const [pickedLocation, setPickedLocation] = useState(null);
+  console.log('pickedLocation', pickedLocation)
   const navigation = useNavigation();
   const route = useRoute();
   const mapLocation = route?.params?.mapLocation
+  const [getLocationFromMap, setGetLocationFromMap] = useState(false)
   const verifyPermissions = async () => {
       const { status } = await Location.requestForegroundPermissionsAsync();
       if (status !== "granted") {
@@ -30,21 +32,25 @@ const LocationSelector = ({ onLocation }) => {
         timeout: 5000,
       });
       const { latitude, longitude } = location.coords;
+      setGetLocationFromMap(false)
       setPickedLocation({ lat: latitude, lng: longitude });
       onLocation({ lat: latitude, lng: longitude });
     };
-
+    
     useEffect(() => {
-      if (mapLocation) {
+      if (pickedLocation === null) {
+        setPickedLocation(location)
+      } 
+      if (mapLocation && getLocationFromMap) {
         setPickedLocation(mapLocation);
         onLocation(mapLocation);
       }
-    }, [mapLocation , pickedLocation]);
+    }, [mapLocation , pickedLocation, location]);
 
   const onHandlePickLocation = async () => {
     const isLocationPermissionGranted = await verifyPermissions();
     if (!isLocationPermissionGranted) return;
-
+    setGetLocationFromMap(true)
     navigation.navigate("Maps");
   };
 

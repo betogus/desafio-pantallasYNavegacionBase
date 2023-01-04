@@ -1,10 +1,14 @@
 import * as ImagePicker from "expo-image-picker";
 import {useState} from "react";
 import { View, Text, Image, Button } from "react-native"
+import { useDispatch, useSelector } from "react-redux";
 import colors from "../../constants/colors"
+import { savePhoto } from "../../store/slices/userSlice";
 import { styles } from "./styles"
 const ImageSelector = ({onImage}) => {
-    const [pickedUrl, setPickedUrl] = useState(null)
+    const dispatch = useDispatch()
+    const photo = useSelector(state => state.user.photo)
+    const [pickedUrl, setPickedUrl] = photo ? useState(photo) : useState(null)
    
      const verifyPermissions = async () => {
          const { status } = await ImagePicker.requestCameraPermissionsAsync();
@@ -27,7 +31,7 @@ const ImageSelector = ({onImage}) => {
              quality: 0.7,
              allowsEditing: true
          });
-
+         dispatch(savePhoto(image.uri))
          setPickedUrl(image.uri);
          onImage(image.uri);
      };

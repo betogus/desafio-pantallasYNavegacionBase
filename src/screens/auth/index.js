@@ -1,11 +1,11 @@
-import React, { useReducer, useState } from 'react';
+import React, { useEffect, useReducer, useState } from 'react';
 import { View, Text, KeyboardAvoidingView, Button, TouchableOpacity, Platform } from 'react-native';
 import colors from '../../constants/colors';
 import { styles } from './styles';
 import { useDispatch } from 'react-redux';
-import { signUp, signIn } from '../../store/actions';
 import { Input } from '../../components';
 import { onInputChange, UPDATED_FORM } from '../../utils';
+import { loguearse, registrarse } from '../../store/thunk';
 
 const initialState = {
     email: {value: '', error: '', touched: false, hasError: true},
@@ -36,16 +36,27 @@ const Auth = ({ navigation }) => {
   const dispatch = useDispatch()
   const [formState, dispatchFormState] = useReducer(formReducer, initialState);
   const [isLogin, setIsLogin] = useState(true);
+  const [submit, setSubmit] = useState(false)
+
   const title = isLogin ? 'Login' : 'Register';
   const message = isLogin ? "Don't you have an account?" : 'Do you have an account?'
   const messageAction = isLogin ? 'Login' : 'Register';
-  const onHandlerSubmit = () => {
-    dispatch(isLogin ? signIn(formState.email.value, formState.password.value) : signUp(formState.email.value, formState.password.value));
-  };
+  
+  useEffect(() => {
+    isLogin && submit ?
+      dispatch(loguearse(formState.email.value, formState.password.value))
+      : !isLogin && submit ?
+      dispatch(registrarse(formState.email.value, formState.password.value))
+      : null
+  }, [submit])
+
+  
+  
   const onHandleChangeInput = (value, type) => {
     onInputChange(type, value, dispatchFormState, formState)
   }
 
+  
   return (
     <KeyboardAvoidingView style={styles.keyboardContainer} behavior={Platform.OS === 'android'? 'height' : 'padding' } enabled>
       <View style={styles.container}>
@@ -81,7 +92,7 @@ const Auth = ({ navigation }) => {
             color={colors.primary}
             title={messageAction}
             disabled={!formState.isFormValid}
-            onPress={onHandlerSubmit}
+            onPress={() => setSubmit(!submit)}
           />
           <View style={styles.prompt}>
             <TouchableOpacity style={styles.promptButton} onPress={()=>setIsLogin(!isLogin)}>

@@ -1,9 +1,9 @@
 import { View, Text, TouchableOpacity } from 'react-native';
-import { Button } from 'react-native-web';
+import { Button } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import ItemButton from '../../components/itemButton';
 import { styles } from './styles';
-import { addToCart } from '../../store/actions';
+import { addToCart } from '../../store/slices/cartSlice';
 import colors from '../../constants/colors';
 
 const Detail = ({ navigation }) => {

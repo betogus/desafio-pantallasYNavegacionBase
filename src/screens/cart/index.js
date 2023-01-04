@@ -3,7 +3,8 @@ import { View, Text, FlatList, TouchableOpacity } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { styles } from './styles';
 import { CartItem } from '../../components';
-import { confirmCart, removeFromCart } from '../../store/actions';
+import { confirmCart } from '../../store/thunk';
+import { removeFromCart } from '../../store/slices/cartSlice';
 
 function Cart({ navigation }) {
   const dispatch = useDispatch();

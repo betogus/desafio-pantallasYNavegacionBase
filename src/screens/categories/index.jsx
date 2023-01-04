@@ -3,16 +3,17 @@ import { styles } from './styles';
 import { CategoryItem } from '../../components';
 import { useDispatch, useSelector } from 'react-redux';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { selectCategory } from '../../store/actions';
+import { selectCategory } from '../../store/slices/categorySlice';
 
 const Categories = ({ navigation }) => {
   const dispatch = useDispatch();
   const categories = useSelector((state) => state.category.categories);
-  const onSelected = (item) => {
+  
+  const onSelected = async (item) => {
     dispatch(selectCategory(item.id));
-    navigation.navigate('Products', { title: item.title });
+    await navigation.navigate('Products', { title: item.title });
   };
-  const semillas = "semillas.jpg"
+  
   const renderItem = ({ item }) => <CategoryItem item={item} onSelected={onSelected}  />;
 
   return (

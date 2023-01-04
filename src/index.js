@@ -1,6 +1,8 @@
 import { useFonts } from 'expo-font';
+import React from 'react';
 import { StyleSheet, View, ActivityIndicator, Image } from 'react-native';
 import { Provider } from 'react-redux';
+import { init } from './db';
 import AppNavigator from './navigation';
 import store from './store';
 
@@ -8,6 +10,15 @@ export default function App() {
   const [loaded] = useFonts({
     'Poppins-Regular': require('./assets/fonts/Poppins-Regular.ttf'),
   });
+
+  init()
+  .then(()=> {
+    console.log('Initialized database')
+  })
+  .catch((err)=> {
+    console.log('Initializing db failed');
+    console.log(err);
+  })
 
   if (!loaded) {
     return (
@@ -17,9 +28,10 @@ export default function App() {
     );
   }
   return (
-    <Provider store={store}>
-      <AppNavigator />
-    </Provider>
+      <Provider store={store}>
+        <AppNavigator />
+      </Provider>
+    
   );
 };
 

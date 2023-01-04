@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 import { View, FlatList } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFocusEffect } from '@react-navigation/native';
-import { deleteOrder, getOrders } from '../../store/actions/orders.action';
+import { deleteOrder, getOrders } from '../../store/slices/ordersSlice';
 import { OrderItem } from '../../components';
 import { styles } from './styles';
 

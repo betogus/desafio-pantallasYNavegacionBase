@@ -1,19 +1,28 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { View, Text, Button } from "react-native"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import ImageSelector from "../../components/image-selector"
 import { styles } from "./styles"
 import { LocationSelector } from "../../components"
 import colors from "../../constants/colors"
-import { URL_GEOCODING } from "../../utils"
 import { ScrollView } from "react-native"
+import { getAddress, loadUser } from "../../store/thunk"
 
 const User = ({navigation}) => {
 
 const user = useSelector(state => state.auth)
+const usuario = useSelector(state => state.user)
 const [image, setImage] = useState("");
-const [location, setLocation] = useState(null);
-const [address, setAddress] = useState(null)
+const [location, setLocation] = useState(usuario.coords);
+const [address, setAddress] = useState(usuario.address)
+const dispatch = useDispatch()
+
+ useEffect(() => {
+    dispatch(loadUser())
+    setAddress(usuario.address)
+    setLocation(usuario.coords)
+}, [dispatch, usuario.address]) 
+console.log('location', location)
 
 const onHandleImageSelect = (imageUrl) => {
     setImage(imageUrl);
@@ -22,23 +31,9 @@ const onHandleLocationSelect = (location) => {
     setLocation(location);
 };
 
-const getAdress = async (coords) => {
-    try { 
-        const response = await fetch(URL_GEOCODING(coords?.lat, coords?.lng));
-        if (!response.ok) throw new Error("No se ha podido conectar con el servidor");
-        const data = await response.json();
 
-        if (!data.results) throw new Error("No se ha podido encontrar la dirección");
-        const address = data.results[0].formatted_address;
-        return address;
-     } catch (error) {
-        console.log("error", error);
-        throw error;
-    } 
-};
-const onHandleSubmit = async () => {
-    let  newAdress = await getAdress(location)
-    setAddress(newAdress)
+const onHandleSubmit = () => {
+    dispatch(getAddress(location))
 }
 
     return (
@@ -52,7 +47,7 @@ const onHandleSubmit = async () => {
                 <ImageSelector  onImage={onHandleImageSelect} />
             </View>
             <View style={{height: 300}}>
-                <LocationSelector onLocation={onHandleLocationSelect} />
+                <LocationSelector onLocation={onHandleLocationSelect} location={location}/>
             </View>
             <Button title="Grabar dirección" color={colors.primary} onPress={onHandleSubmit} />
         </ScrollView>
