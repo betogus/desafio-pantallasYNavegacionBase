@@ -25,8 +25,19 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
+        
       },
-      "package": "com.gusmtorres.dietetica"
+      "package": "com.gusmtorres.dietetica",
+      "permissions": [
+        "CAMERA",
+        "ACCESS_FINE_LOCATION",
+        "WRITE_EXTERNAL_STORAGE"
+      ],
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyAPnUWG6T2MxFB12Kw3l7fT4-DzKjtDwEQ"
+        }
+      }
     },
     "web": {
       "favicon": "./assets/favicon.png"
