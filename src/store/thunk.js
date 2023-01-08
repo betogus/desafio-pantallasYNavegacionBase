@@ -132,19 +132,13 @@ export const getAddress = (coords) => async (dispatch) => {
             const address = data.results[0].formatted_address;
             let result;
             const loadAddress = await getData()
-            console.log(coords)
-            console.log('loadAddress', !loadAddress.rows._array[0])
             if (!loadAddress.rows._array[0]) {
                 result = await insertData(address, coords.lat, coords.lng)
-                console.log('insert', result)
             } else {
-                console.log('toUpdate')
                 result = await updateData(address, coords.lat, coords.lng)
-                console.log('update', result)
             }
             dispatch(saveAddress({address, coords}))
         } catch (error) {
-            console.log("error", error);
             throw Error;
         }
 }
@@ -154,8 +148,6 @@ export const getAddress = (coords) => async (dispatch) => {
     return async (dispatch) => {
         try {
             const result = await getData()
-            console.log('result2', result.rows)
-            console.log(result?.rows?._array[0]?.address) 
             let coords = { lat: result?.rows?._array[0]?.lat, lng: result?.rows?._array[0]?.lng} 
             let address = result?.rows?._array[0]?.address                                                                                                                                                                                                                                                               
             dispatch(saveAddress({address, coords}))

@@ -21,10 +21,8 @@ const userSlice = createSlice({
         savePhoto: async (state, action) => {
             state.photo = action.payload;
             const result = await insertUser(id, state.photo)
-            console.log('result', result)
         },
         saveAddress: (state, action) => {
-            console.log('action', action.payload)
             state.address = action.payload.address
             state.coords = action.payload.coords
             

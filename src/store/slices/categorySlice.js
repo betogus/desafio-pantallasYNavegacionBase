@@ -17,7 +17,6 @@ export const categorySlice = createSlice({
             if (indexCategory === -1) return state;
             
             else state.selected = state.categories[indexCategory]
-            console.log(state.selected)
         }
     }
 })

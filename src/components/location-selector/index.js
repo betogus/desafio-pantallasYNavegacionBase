@@ -9,7 +9,6 @@ import { styles } from "./styles";
 const LocationSelector = ({ onLocation, location }) => {
 
   const [pickedLocation, setPickedLocation] = useState(null);
-  console.log('pickedLocation', pickedLocation)
   const navigation = useNavigation();
   const route = useRoute();
   const mapLocation = route?.params?.mapLocation

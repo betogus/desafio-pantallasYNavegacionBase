@@ -22,7 +22,6 @@ const dispatch = useDispatch()
     setAddress(usuario.address)
     setLocation(usuario.coords)
 }, [dispatch, usuario.address]) 
-console.log('location', location)
 
 const onHandleImageSelect = (imageUrl) => {
     setImage(imageUrl);

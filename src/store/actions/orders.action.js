@@ -35,7 +35,6 @@ export const deleteOrder = (id) => async (dispatch) => {
       },
     });
     const data = await response.json();
-    console.log(data);
     dispatch({
       type: DELETE_ORDER,
       id,
