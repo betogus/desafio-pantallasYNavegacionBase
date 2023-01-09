@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
         alignItems: 'center'
     },
     container: {
-        minHeight: 300,
+        minHeight: 350,
         width: '80%',
         maxWidth: 400,
         padding: 15,

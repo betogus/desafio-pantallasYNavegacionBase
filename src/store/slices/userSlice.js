@@ -5,12 +5,8 @@ import { insertUser } from "../../db";
 
 
 const initialState = {
-    id: null,
     photo: null,
     address: null,
-    email: null,
-    password: null,
-    userId: null,
     coords: null
 }
 
@@ -25,7 +21,7 @@ const userSlice = createSlice({
         saveAddress: (state, action) => {
             state.address = action.payload.address
             state.coords = action.payload.coords
-            
+            console.log(state.coords)
         }
     }
 })

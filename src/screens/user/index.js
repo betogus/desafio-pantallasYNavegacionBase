@@ -10,7 +10,7 @@ import { getAddress, loadUser } from "../../store/thunk"
 
 const User = ({navigation}) => {
 
-const user = useSelector(state => state.auth)
+const auth = useSelector(state => state.auth)
 const usuario = useSelector(state => state.user)
 const [image, setImage] = useState("");
 const [location, setLocation] = useState(usuario.coords);
@@ -18,10 +18,11 @@ const [address, setAddress] = useState(usuario.address)
 const dispatch = useDispatch()
 
  useEffect(() => {
-    dispatch(loadUser())
+    dispatch(loadUser(auth.userId))
     setAddress(usuario.address)
     setLocation(usuario.coords)
 }, [dispatch, usuario.address]) 
+
 
 const onHandleImageSelect = (imageUrl) => {
     setImage(imageUrl);
@@ -32,14 +33,14 @@ const onHandleLocationSelect = (location) => {
 
 
 const onHandleSubmit = () => {
-    dispatch(getAddress(location))
+    dispatch(getAddress(location, auth.userId))
 }
 
     return (
         <ScrollView style={styles.container}> 
             <View style={{height: 100}}>
-                <Text>Id: {user.userId}</Text>
-                <Text>email: {user.email}</Text>
+                <Text>Id: {auth.userId}</Text>
+                <Text>email: {auth.email}</Text>
                 <Text>Dirección: {address}</Text>
             </View>
             <View style={{height: 200}}>

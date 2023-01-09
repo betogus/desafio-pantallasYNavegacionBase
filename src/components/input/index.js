@@ -38,12 +38,12 @@ const Input = ({
                 keyboardType={keyboardType}
                 />
             </Label>
-        {hasError && touched ? (
-        <View style={styles.message}>
-            <Text style={styles.helperText}>{error}</Text> 
+            {hasError && touched ? (
+            <View style={styles.message}>
+                <Text style={styles.helperText}>{error}</Text> 
             </View>
-        ): null
-        }
+            ): null
+            }
         </View>
     )   
 }

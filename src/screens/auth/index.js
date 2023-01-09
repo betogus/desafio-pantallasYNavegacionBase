@@ -2,16 +2,14 @@ import React, { useEffect, useReducer, useState } from 'react';
 import { View, Text, KeyboardAvoidingView, Button, TouchableOpacity, Platform } from 'react-native';
 import colors from '../../constants/colors';
 import { styles } from './styles';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Input } from '../../components';
 import { onInputChange, UPDATED_FORM } from '../../utils';
-import { loguearse, registrarse } from '../../store/thunk';
+import { lastLogin, loguearse, registrarse } from '../../store/thunk';
+import { getAllData } from '../../db';
 
-const initialState = {
-    email: {value: '', error: '', touched: false, hasError: true},
-    password: {value: '', error: '', touched: false, hasError: true},
-    isFormValid: false,
-  }
+ 
+
 
   const formReducer = (state, action) => {
     switch (action.type) {
@@ -34,6 +32,18 @@ const initialState = {
   }
 const Auth = ({ navigation }) => {
   const dispatch = useDispatch()
+  const auth = useSelector(state => state.auth)
+
+  useEffect(() => {
+    dispatch(lastLogin())
+  }, [dispatch, auth])
+  const initialState = {
+    email: {value: auth.email? auth.email : "", error: '', touched: false, hasError: true},
+    password: {value: auth.password? auth.password : "", error: '', touched: false, hasError: true},
+    isFormValid: false,
+  }
+  
+ 
   const [formState, dispatchFormState] = useReducer(formReducer, initialState);
   const [isLogin, setIsLogin] = useState(true);
   const [submit, setSubmit] = useState(false)

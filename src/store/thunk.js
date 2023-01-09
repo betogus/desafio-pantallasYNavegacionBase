@@ -2,7 +2,7 @@ import { signIn, signUp } from "./slices/authSlice";
 import { URL_AUTH_SIGN_IN, URL_AUTH_SIGN_UP, URL_BASE } from "../constants/firebase";
 import { confirmOrder } from "./slices/cartSlice";
 import { URL_GEOCODING } from "../utils";
-import { getData, insertData, updateData } from "../db";
+import { getAllData, getData, insertData, updateData } from "../db";
 import { saveAddress } from "./slices/userSlice";
 
 export const loguearse =  (email, password) => {
@@ -19,8 +19,15 @@ export const loguearse =  (email, password) => {
                     returnSecureToken: true
                 })
             });
-
             const data = await response.json();
+            let loadData = await getData(data.localId)
+            let allData = await getAllData()
+            console.log("all data", allData)
+            loadData.rows.length === 0 ? await insertData(data.localId) : null
+            await updateData(email, "email", data.localId)
+            await updateData(password, "password", data.localId)
+            loadData = await getData(data.localId)
+            console.log("load data", loadData)
             dispatch(signIn({
                 token: data.idToken,
                 userId: data.localId,
@@ -51,6 +58,9 @@ export const registrarse = (email, password) => {
                 throw new Error('Algo anda mal')
             }
             const data = await response.json();
+            await insertData(data.localId)
+            await updateData(email, "email", data.localId)
+            await updateData(password, "password", data.localId)
             dispatch(signUp({
                 token: data.idToken,
                 userId: data.localId,
@@ -122,7 +132,7 @@ export const confirmCart = (items, total) => async (dispatch) => {
            
  */
 
-export const getAddress = (coords) => async (dispatch) => {
+export const getAddress = (coords, userId) => async (dispatch) => {
         try {
             const response = await fetch(URL_GEOCODING(coords?.lat, coords?.lng));
             if (!response.ok) throw new Error("No se ha podido conectar con el servidor");
@@ -130,13 +140,11 @@ export const getAddress = (coords) => async (dispatch) => {
 
             if (!data.results) throw new Error("No se ha podido encontrar la dirección");
             const address = data.results[0].formatted_address;
-            let result;
-            const loadAddress = await getData()
-            if (!loadAddress.rows._array[0]) {
-                result = await insertData(address, coords.lat, coords.lng)
-            } else {
-                result = await updateData(address, coords.lat, coords.lng)
-            }
+            await updateData(address, 'address', userId)
+            await updateData(coords.lat, 'lat', userId)
+            await updateData(coords.lng, 'lng', userId)
+            let loadData = await getData(userId)
+            console.log(loadData)
             dispatch(saveAddress({address, coords}))
         } catch (error) {
             throw Error;
@@ -144,10 +152,10 @@ export const getAddress = (coords) => async (dispatch) => {
 }
 
 
- export const loadUser = () => {
+ export const loadUser = (userId) => {
     return async (dispatch) => {
         try {
-            const result = await getData()
+            const result = await getData(userId)
             let coords = { lat: result?.rows?._array[0]?.lat, lng: result?.rows?._array[0]?.lng} 
             let address = result?.rows?._array[0]?.address                                                                                                                                                                                                                                                               
             dispatch(saveAddress({address, coords}))
@@ -158,3 +166,23 @@ export const getAddress = (coords) => async (dispatch) => {
         
     }
 } 
+
+export const lastLogin = () => {
+    return async (dispatch) => {
+        try {
+            const results = await getAllData()
+            const length = results?.rows?.length
+            const result = results?.rows?._array[length - 1]
+            dispatch(signUp({
+                userId: result.userId,
+                email: result.email,
+                password: result.password
+            }))
+            dispatch(saveAddress(result.address, {lat: result.lat, lng: result.lng}))
+        }
+        catch (error) {
+            throw error;
+    
+        }
+    }
+}

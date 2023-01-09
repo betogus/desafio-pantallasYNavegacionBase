@@ -8,7 +8,7 @@ import { styles } from "./styles";
 
 const LocationSelector = ({ onLocation, location }) => {
 
-  const [pickedLocation, setPickedLocation] = useState(null);
+  const [pickedLocation, setPickedLocation] = useState(location);
   const navigation = useNavigation();
   const route = useRoute();
   const mapLocation = route?.params?.mapLocation
@@ -37,7 +37,7 @@ const LocationSelector = ({ onLocation, location }) => {
     };
     
     useEffect(() => {
-      if (pickedLocation === null) {
+      if (pickedLocation === undefined) {
         setPickedLocation(location)
       } 
       if (mapLocation && getLocationFromMap) {
