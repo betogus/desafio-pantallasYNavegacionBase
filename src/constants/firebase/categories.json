@@ -1,0 +1,31 @@
+[{
+        "id": 1,
+        "title": "Legumbres y Harinas",
+        "color": "#ed6a5a",
+        "thumbnail": "https://firebasestorage.googleapis.com/v0/b/dietetica-7ad81.appspot.com/o/imagenes%2FlegumbresYHarinas.jpg?alt=media&token=516ceeef-4ea7-4e89-b5ea-aee1d970d631"
+    },
+    {
+        "id": 2,
+        "title": "Cereales",
+        "color": "#F4F1BB",
+        "thumbnail": "https://firebasestorage.googleapis.com/v0/b/dietetica-7ad81.appspot.com/o/imagenes%2Fcereales.jpg?alt=media&token=b2999dee-f35d-4bb0-a010-9eb7fbcbe47e"
+    },
+    {
+        "id": 3,
+        "title": "Frutos Secos",
+        "color": "#9bc1bc",
+        "thumbnail": "https://firebasestorage.googleapis.com/v0/b/dietetica-7ad81.appspot.com/o/imagenes%2FfrutosSecos.jpg?alt=media&token=82d2e8bb-a6cf-49a0-b6e1-7eb0a70ec815"
+    },
+    {
+        "id": 4,
+        "title": "Almacén Sueltos",
+        "color": "#5D576B",
+        "thumbnail": "https://firebasestorage.googleapis.com/v0/b/dietetica-7ad81.appspot.com/o/imagenes%2FalmacenSueltos.jpg?alt=media&token=233ffa3e-0159-44ad-96d7-d6cd874166c3"
+    },
+    {
+        "id": 5,
+        "title": "Semillas",
+        "color": "#e6ebe0",
+        "thumbnail": "https://firebasestorage.googleapis.com/v0/b/dietetica-7ad81.appspot.com/o/imagenes%2Fsemillas.jpg?alt=media&token=ebaf9be7-afbc-4b26-9aaf-1ae175b18de0"
+    }
+]

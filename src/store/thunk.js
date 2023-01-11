@@ -4,6 +4,9 @@ import { confirmOrder } from "./slices/cartSlice";
 import { URL_GEOCODING } from "../utils";
 import { getAllData, getData, insertData, updateData } from "../db";
 import { saveAddress } from "./slices/userSlice";
+import { removeOrder, saveOrders } from "./slices/ordersSlice";
+import { saveCategories } from "./slices/categorySlice";
+import { saveProducts } from "./slices/productsSlice";
 
 export const loguearse =  (email, password) => {
     return async (dispatch) => {
@@ -98,7 +101,44 @@ export const confirmCart = (items, total) => async (dispatch) => {
     }
 };
 
+export const loadCategories = () => async(dispatch) => {
+    try {
+        const response = await fetch(`${URL_BASE}/categories.json`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        const data = await response.json();
+        const categories = Object.keys(data).map((key) => ({
+            ...data[key],
+            id: key,
+        }));
 
+        dispatch(saveCategories(categories));
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+export const loadProducts = () => async (dispatch) => {
+    try {
+        const response = await fetch(`${URL_BASE}/products.json`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        const data = await response.json();
+        const products = Object.keys(data).map((key) => ({
+            ...data[key],
+            id: key,
+        }));
+        dispatch(saveProducts(products));
+    } catch (error) {
+        console.log(error);
+    }
+};
 
 /* export const savePhoto = () => {
      return async () => {
@@ -144,7 +184,6 @@ export const getAddress = (coords, userId) => async (dispatch) => {
             await updateData(coords.lat, 'lat', userId)
             await updateData(coords.lng, 'lng', userId)
             let loadData = await getData(userId)
-            console.log(loadData)
             dispatch(saveAddress({address, coords}))
         } catch (error) {
             throw Error;
@@ -171,7 +210,8 @@ export const lastLogin = () => {
     return async (dispatch) => {
         try {
             const results = await getAllData()
-            const length = results?.rows?.length
+            if (results.rows) {
+                const length = results?.rows?.length
             const result = results?.rows?._array[length - 1]
             dispatch(signUp({
                 userId: result.userId,
@@ -180,9 +220,46 @@ export const lastLogin = () => {
             }))
             dispatch(saveAddress(result.address, {lat: result.lat, lng: result.lng}))
         }
+            }
+            
         catch (error) {
             throw error;
     
         }
     }
 }
+
+export const getOrders = () => async (dispatch) => {
+    try {
+        const response = await fetch(`${URL_BASE}/orders.json`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        const data = await response.json();
+        const orders = Object.keys(data).map((key) => ({
+            ...data[key],
+            id: key,
+        }));
+
+        dispatch(saveOrders(orders));
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+export const deleteOrder = (id) => async (dispatch) => {
+    try {
+        const response = await fetch(`${URL_BASE}/orders/${id}.json`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        const data = await response.json();
+        dispatch(removeOrder(id));
+    } catch (error) {
+        console.log(error);
+    }
+};

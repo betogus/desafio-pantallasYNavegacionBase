@@ -7,15 +7,15 @@ export const ordersSlice = createSlice({
     name: 'orders',
     initialState,
     reducers: {
-        getOrders: (state, action) => {
+        saveOrders: (state, action) => {
             state.list = action.payload
         },
-        deleteOrder: (state, action) => {
+        removeOrder: (state, action) => {
             state.list = state.list.filter((order) => order.id !== action.payload)
         }
     }
 })
 
-export const { getOrders, deleteOrder } = ordersSlice.actions
+export const { saveOrders, removeOrder } = ordersSlice.actions
 
 export default ordersSlice.reducer
