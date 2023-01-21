@@ -35,6 +35,7 @@ const Tabs = () => {
           tabBarIcon: ({ focused }) => (
             <Ionicons name={focused ? 'basket' : 'basket-outline'} size={22} color={colors.title} />
           ),
+          
         }}
       />
       <BottomTab.Screen

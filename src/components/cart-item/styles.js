@@ -4,27 +4,30 @@ import colors from '../../constants/colors';
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.primary,
-    borderWidth: 1,
-    borderRadius: 5,
-    borderColor: colors.primaryDark,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    backgroundColor: "#fff",
+    borderRadius: 15,
     paddingVertical: 10,
     paddingHorizontal: 20,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.2,
-    shadowRadius: 1.41,
-    elevation: 2,
     margin: 10,
+    shadowColor: "#000",
+    shadowOffset: {
+     width: 0,
+     height: 1,
+    },
+    shadowOpacity: 0.22,
+    shadowRadius: 2.22,
+    elevation: 3,
   },
   header: {
+    width: '70%',
     fontSize: 20,
-    fontFamily: 'Poppins-Regular',
-    color: colors.title,
+    fontFamily: 'normal',
+    color: "#6e6c6c",
     marginBottom: 5,
+    fontWeight: "900",
   },
   contentContainer: {
     flex: 1,
@@ -37,9 +40,11 @@ export const styles = StyleSheet.create({
     flex: 1,
   },
   text: {
-    fontSize: 14,
-    fontFamily: 'Poppins-Regular',
-    color: colors.title,
+    fontSize: 18,
+    color: "#6e6c6c",
+    fontFamily: 'normal',
     marginBottom: 5,
+    fontWeight: '900'
   },
+
 });

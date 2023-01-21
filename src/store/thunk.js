@@ -112,7 +112,6 @@ export const loadCategories = () => async(dispatch) => {
         const data = await response.json();
         const categories = Object.keys(data).map((key) => ({
             ...data[key],
-            id: key,
         }));
 
         dispatch(saveCategories(categories));

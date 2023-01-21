@@ -22,18 +22,28 @@ export const styles = StyleSheet.create({
   },
 
   textTotal: {
-    fontSize: 16,
-    fontFamily: 'Poppins-Regular',
+    fontSize: 20,
+    fontFamily: 'normal',
+    
   },
   buttonDisabled: {
-    backgroundColor: colors.primaryDark,
-    borderTopWidth: 1,
-    borderTopColor: colors.primaryDark,
-    borderBottomColor: colors.primaryDark,
+    backgroundColor: "#DDDDE5",
     paddingVertical: 10,
     marginBottom: 10,
     marginHorizontal: 10,
     paddingHorizontal: 20,
     borderRadius: 10,
   },
+  totalContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    width: '50%',
+    paddingHorizontal: 10,
+    alignItems: 'center'
+  },
+  cart: {
+    flexDirection: 'row',
+    width: "100%",
+    justifyContent: 'space-around'
+  }
 });

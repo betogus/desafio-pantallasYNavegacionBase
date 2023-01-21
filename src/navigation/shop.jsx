@@ -7,24 +7,43 @@ const Stack = createNativeStackNavigator();
 const ShopNavigator = () => {
   return (
     <Stack.Navigator
-      initialRouteName="Categories"
-      screenOptions={{
+      initialRouteName="Categorías"
+      screenOptions={
+        {
         headerStyle: {
-          backgroundColor: colors.backgroundBase,
+          height: 40,
         },
-        headerTintColor: colors.primaryDark,
+        
+        headerTintColor: "#fff",
         headerTitleAlign: 'center',
         headerTitleStyle: {
-          fontFamily: 'Poppins-Regular',
+          fontFamily: 'normal',
+          fontWeight: '900',
+          fontSize: 25,
         },
         presentation: 'card',
-      }}>
-      <Stack.Screen name="Categories" component={Categories} />
+      }} >
+      <Stack.Screen 
+      name="Categorías" 
+      component={Categories} 
+      options={{
+        headerStyle: {
+           backgroundColor: colors.primary,
+           
+        },
+
+      }}
+      />
       <Stack.Screen
         name="Products"
         component={Products}
         options={({ route }) => ({
           title: route.params.title,
+          thumbnail: route.params.thumbnail,
+          headerStyle: {
+            backgroundColor: colors.primary,
+
+          },
         })}
       />
       <Stack.Screen
@@ -32,7 +51,9 @@ const ShopNavigator = () => {
         component={Detail}
         options={({ route }) => ({
           title: route.params.title,
+          thumbnail: route.params.thumbnail,
           headerBackTitle: '',
+          headerShown: false
         })}
       />
     </Stack.Navigator>

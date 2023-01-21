@@ -4,4 +4,4 @@ export const formatDate = (time) => {
 };
 
 export const sumTotal = (items) =>
-  items?.map((item) => item.precioKg * item.quantity)?.reduce((a, b) => a + b, 0);
+  items?.map((item) => item.precio100gr * item.quantity)?.reduce((a, b) => a + b, 0);

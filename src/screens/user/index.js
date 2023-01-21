@@ -16,12 +16,12 @@ const [image, setImage] = useState("");
 const [location, setLocation] = useState(usuario.coords);
 const [address, setAddress] = useState(usuario.address)
 const dispatch = useDispatch()
-
- useEffect(() => {
+console.log('usuario', usuario)
+ /* useEffect(() => {
     dispatch(loadUser(auth.userId))
     setAddress(usuario.address)
     setLocation(usuario.coords)
-}, [dispatch, usuario.address]) 
+}, [dispatch, usuario.address])  */
 
 
 const onHandleImageSelect = (imageUrl) => {

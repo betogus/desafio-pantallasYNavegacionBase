@@ -5,5 +5,5 @@ export default {
   background: '#30292F',
   primary: '#a6bc5b',
   primaryDark: '#3C9F68',
-  backgroundBase: '#f6f6f6',
+  backgroundBase: '#f4f4f8',
 };

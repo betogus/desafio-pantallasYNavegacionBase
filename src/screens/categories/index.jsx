@@ -14,7 +14,7 @@ const Categories = ({ navigation }) => {
   
   const onSelected = async (item) => {
     dispatch(selectCategory(item.id));
-    await navigation.navigate('Products', { title: item.title });
+    await navigation.navigate('Products', { title: item.title, thumbnail: item.thumbnail });
   };
   useEffect(() => {
     dispatch(loadCategories())
@@ -25,14 +25,13 @@ const Categories = ({ navigation }) => {
   const renderItem = ({ item }) => <CategoryItem item={item} onSelected={onSelected}  />;
 
   return (
-    <SafeAreaView style={styles.container}>
       <FlatList
         data={categories}
         renderItem={renderItem}
         keyExtractor={(item) => item.id.toString()}
         style={styles.container}
+        contentContainerStyle={{ marginTop: 0 }}
       />
-    </SafeAreaView>
   );
 };
 

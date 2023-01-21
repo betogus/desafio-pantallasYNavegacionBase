@@ -8,8 +8,7 @@ function ProductItem({ item, onSelected, color }) {
       <TouchableOpacity style={styles.touchable} onPress={() => onSelected(item)}>
         <Text style={styles.title}>{item.name}</Text>
         <View style={styles.detailContainer}>
-          <Text style={styles.price}>Precio por 100g: ${item.precio100gr}</Text>
-          <Text style={styles.price}>Precio por Kg: ${item.precioKg}</Text>
+          <Text style={styles.price}>${item.precio100gr} (100g)</Text>
         </View>
       </TouchableOpacity>
     </View>

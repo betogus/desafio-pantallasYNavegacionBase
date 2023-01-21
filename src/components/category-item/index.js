@@ -7,9 +7,10 @@ function CategoryItem({ item, onSelected }) {
  
   return (
     <TouchableOpacity style={styles.container} onPress={() => onSelected(item)}>
-      <ImageBackground
-        style={styles.imageBackground}
-        source = {require('../../assets/images/semillas.jpg')} >
+        <ImageBackground
+          source = {{uri: item.thumbnail}}
+          imageStyle={{ borderRadius: 35 }}
+        >
         <View style={styles.textContainer}>
           <Text style={styles.title}>{item.title}</Text>
         </View>

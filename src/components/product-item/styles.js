@@ -11,16 +11,10 @@ export const styles = StyleSheet.create({
   },
   touchable: {
     flex: 1,
+    flexDirection: "row",
     minHeight: 50,
     borderRadius: 10,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.2,
-    shadowRadius: 1.41,
-    elevation: 2,
+    backgroundColor: colors.backgroundBase,
     justifyContent: 'center',
     alignItems: 'center',
     padding: 10,
@@ -28,6 +22,7 @@ export const styles = StyleSheet.create({
   title: {
     fontSize: 18,
     fontFamily: 'Poppins-Regular',
+    width: "70%"
   },
   detailContainer: {
     flex: 1,

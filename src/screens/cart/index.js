@@ -19,12 +19,18 @@ function Cart({ navigation }) {
   return (
     <View style={styles.container}>
       <FlatList data={cart} renderItem={renderItem} keyExtractor={(item) => item.id.toString()} />
-      <View style={cart.length === 0 ? styles.buttonDisabled : styles.footer}>
-        <TouchableOpacity disabled={cart.length === 0} onPress={onCreateOrder}>
+       <View style={styles.cart}>
+        <View style={styles.totalContainer}>
           <Text style={styles.textTotal}>Total</Text>
           <Text style={styles.textTotal}>${total}</Text>
+        </View>
+      <View style={cart.length === 0 ? styles.buttonDisabled : styles.footer}>
+        <TouchableOpacity disabled={cart.length === 0} onPress={onCreateOrder}>
+          <Text style={styles.textTotal}>Confirmar</Text>
         </TouchableOpacity>
       </View>
+       </View>
+       
     </View>
   );
 }

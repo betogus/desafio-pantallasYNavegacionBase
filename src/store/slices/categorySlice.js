@@ -16,7 +16,7 @@ export const categorySlice = createSlice({
         selectCategory: (state,  action ) => {
             const indexCategory = state.categories.findIndex(
                 (category) => category.id === action.payload
-            )+1;
+            );
             if (indexCategory === -1) return state;
             
             else state.selected = state.categories[indexCategory]

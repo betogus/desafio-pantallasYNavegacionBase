@@ -3,29 +3,26 @@ import colors from '../../constants/colors';
 
 export const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    height: 160,
     justifyContent: 'center',
     alignItems: 'center',
-    margin: 10,
+    marginVertical: 10,
   },
 
   title: {
     fontSize: 25,
     fontFamily: 'Poppins-Regular',
-    color: colors.title,
+    fontWeight: "900",
+    color: "#fff",
   },
   textContainer: {
-    backgroundColor: 'rgba(255,255,255,0.5)',
+    backgroundColor: 'rgba(0,0,0,0.3)',
     width: 320,
     height: 160,
     justifyContent: 'center',
     alignItems: 'center',
+    borderRadius: 35
   },
-  imageBackground: {
-    width: 320,
-    height: 160,
 
-    borderRadius: 10,
-    resizeMode: 'cover',
-  },
+
 });

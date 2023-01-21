@@ -5,7 +5,7 @@ import { styles } from './styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { Input } from '../../components';
 import { onInputChange, UPDATED_FORM } from '../../utils';
-import { lastLogin, loguearse, registrarse } from '../../store/thunk';
+import { lastLogin, loadUser, loguearse, registrarse } from '../../store/thunk';
 import { getAllData } from '../../db';
 
  
@@ -37,6 +37,7 @@ const Auth = ({ navigation }) => {
   useEffect(() => {
     dispatch(lastLogin())
   }, [dispatch, auth])
+
   const initialState = {
     email: {value: auth.email? auth.email : "", error: '', touched: false, hasError: true},
     password: {value: auth.password? auth.password : "", error: '', touched: false, hasError: true},

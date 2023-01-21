@@ -1,6 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit"
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { insertUser } from "../../db";
 
 
 
@@ -14,14 +12,13 @@ const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
-        savePhoto: async (state, action) => {
+        savePhoto: (state, action) => {
             state.photo = action.payload;
-            const result = await insertUser(id, state.photo)
+            console.log('state photo', action.payload)
         },
         saveAddress: (state, action) => {
             state.address = action.payload.address
             state.coords = action.payload.coords
-            console.log(state.coords)
         }
     }
 })

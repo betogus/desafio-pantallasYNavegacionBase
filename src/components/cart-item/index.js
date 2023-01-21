@@ -7,15 +7,14 @@ import colors from '../../constants/colors';
 function CartItem({ item, onDelete }) {
   return (
     <View style={styles.container}>
-      <View>
-        <Text style={styles.header}>{item.name}</Text>
+      <Text style={styles.header}>{item.name}</Text>
+      <View style={styles.textContainer}>
+       <Text style={styles.text}>${item.precio100gr * item.quantity}</Text>
+       <Text style={styles.text}>{item.quantity}00 g</Text>
       </View>
-      <View>
-        <Text style={styles.text}>{item.quantity} Kg</Text>
-        <Text style={styles.text}>${item.precioKg}</Text>
-      </View>
+     
       <TouchableOpacity onPress={() => onDelete(item.id)}>
-        <Ionicons name="trash" size={24} color={colors.button} />
+        <Ionicons name="trash" size={24} color={"#6e6c6c"} />
       </TouchableOpacity>
     </View>
   );
